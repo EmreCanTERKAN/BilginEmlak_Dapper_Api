@@ -10,8 +10,8 @@
         int ApartmentCount();
         string EmployeeNameByMaxProductCount();
         string CategoryNameByMaxProductCount();
-        decimal AverageProductByRent();
-        decimal AverageProductBySail();
+        decimal AverageProductPriceByRent();
+        decimal AverageProductPriceBySail();
         // en çok hangi şehirden var
         string CityNameByMaxProductCount();
         // kaç farklı şehir var
