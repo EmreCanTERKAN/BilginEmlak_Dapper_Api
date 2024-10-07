@@ -97,42 +97,82 @@ namespace RealEstate_Dapper_Api.Repositories.StatisticRepositories
 
         public string CityNameByMaxProductCount()
         {
-            throw new NotImplementedException();
+            string query = "Select Top(1) City,Count(*) as 'ilan_Sayisi' From Product Group By City order by ilan_Sayisi Desc";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = connection.QueryFirstOrDefault<string>(query);
+                return values;
+            }
         }
-
+        
         public int DifferentCityCount()
         {
-            throw new NotImplementedException();
+            string query = "SELECT COUNT(DISTINCT City) FROM Product";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = connection.QueryFirstOrDefault<int>(query);
+                return values;
+            }
         }
-
+        
         public string EmployeeNameByMaxProductCount()
         {
-            throw new NotImplementedException();
+            string query = "Select Name,Count(*) 'product_count' From Product Inner Join Employee ON Product.EmployeeId=Employee.EmployeeID Group By Name Order By product_count desc";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = connection.QueryFirstOrDefault<string>(query);
+                return values;
+            }
         }
-
+ 
         public decimal LastProductPrice()
         {
-            throw new NotImplementedException();
+            string query = "select Top(1) Price  from product Order By ProductId Desc";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = connection.QueryFirstOrDefault<decimal>(query);
+                return values;
+            }
         }
 
         public string NewestBuildingYear()
         {
-            throw new NotImplementedException();
+            string query = "select top(1)BuildYear from ProductDetails order by BuildYear desc";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = connection.QueryFirstOrDefault<string>(query);
+                return values;
+            }
         }
 
         public string OldestBuildingYear()
         {
-            throw new NotImplementedException();
+            string query = "select top(1)BuildYear from ProductDetails order by BuildYear asc";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = connection.QueryFirstOrDefault<string>(query);
+                return values;
+            }
         }
 
         public int PassiveCategoryCount()
         {
-            throw new NotImplementedException();
+            string query = "select Count(*) from category Where CategoryStatus=0";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = connection.QueryFirstOrDefault<int>(query);
+                return values;
+            }
         }
 
         public int ProductCount()
         {
-            throw new NotImplementedException();
+            string query = "select Count(*) from Product";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = connection.QueryFirstOrDefault<int>(query);
+                return values;
+            }
         }
     }
 }
