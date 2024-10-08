@@ -34,8 +34,8 @@ namespace RealEstate_Dapper_Api.Controllers
             return Ok("Hakkımızda kısmı başarılı bir şekilde eklendi");
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteWhoWeAreDetail(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult>  DeleteWhoWeAreDetail(int id)
         {
             _whoWeAreRepository.DeleteWhoWeAreDetail(id);
             return Ok("Hakkımızda Başarılı Bir Şekilde Silindi");
