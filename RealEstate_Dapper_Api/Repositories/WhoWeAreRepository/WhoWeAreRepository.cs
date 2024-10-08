@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using RealEstate_Dapper_Api.Dtos.CategoryDtos;
 using RealEstate_Dapper_Api.Dtos.WhoWeAreDtos;
 using RealEstate_Dapper_Api.Models.DapperContext;
 
@@ -27,7 +26,7 @@ namespace RealEstate_Dapper_Api.Repositories.WhoWeAreRepository
         }
         public async void CreateWhoWeAreDetail(CreateWhoWeAreDetailDto createWhoWeAreDetailDto)
         {
-            string query = "insert into WhoWeAreDetail(Title,,Subtitle,Description1,Description2) values (@title,@subtitle,@description1,@description2)";
+            string query = "insert into WhoWeAreDetail(Title,Subtitle,Description1,Description2) values (@title,@subtitle,@description1,@description2)";
             // dinamik parametre tanımlandı..
             var parameters = new DynamicParameters();
             parameters.Add("title", createWhoWeAreDetailDto.Title);
@@ -44,7 +43,7 @@ namespace RealEstate_Dapper_Api.Repositories.WhoWeAreRepository
         }
         public async void DeleteWhoWeAreDetail(int id)
         {
-            string query = "Delete From WhoWeAreDetail Where WhoWeAreDetailId=@whoWeAreDetailID";
+            string query = "Delete From WhoWeAreDetail Where WhoWeAreDetailId=@WhoWeAreDetailID";
 
             var parameters = new DynamicParameters();
             parameters.Add("whoWeAreDetailID", id);
@@ -57,7 +56,7 @@ namespace RealEstate_Dapper_Api.Repositories.WhoWeAreRepository
         }
         public async void UpdateWhoWeAreDetail(UpdateWhoWeAreDetailDto updateWhoWeAreDetailDto)
         {
-            string query = "Update WhoWeAreDetail Set Title=@title,Subtitle=@subtitle,Description1=@description1,Description2=@description2  where WhoWeAreDetailID=@whoWeAreDetailID";
+            string query = "Update WhoWeAreDetail Set Title=@title,Subtitle=@subtitle,Description1=@description1,Description2=@description2  where WhoWeAreDetailId=@WhoWeAreDetailID";
             var parameters = new DynamicParameters();
             parameters.Add("@title", updateWhoWeAreDetailDto.Title);
             parameters.Add("@subtitle", updateWhoWeAreDetailDto.Subtitle);
