@@ -37,6 +37,7 @@ namespace RealEstate_Dapper_UI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateService(CreateServiceDto createServiceDto)
         {
+            createServiceDto.ServiceStatus = true;
             var client = _httpClientFactory.CreateClient();
             //Ekleme,Güncelleme işlemleri serialize, Listeleme ve Idye göre getirme Desiriliaze 
             var jsonData = JsonConvert.SerializeObject(createServiceDto);
@@ -49,7 +50,7 @@ namespace RealEstate_Dapper_UI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> DeleteServiceDetail(int id)
+        public async Task<IActionResult> DeleteService(int id)
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.DeleteAsync($"https://localhost:44304/api/Services/{id}");
