@@ -39,6 +39,7 @@ namespace RealEstate_Dapper_Api.Controllers
             _productRepository.ProductDealOfTheDayStatusChangeToFalse(id);
             return Ok("İlan Günün fırsatları arasından çıkarıldı.");
         }
+      
 
 
     }

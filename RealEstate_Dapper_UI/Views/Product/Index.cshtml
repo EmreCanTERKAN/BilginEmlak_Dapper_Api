@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Admin/Index.cshtml";
+    int count = 0;
 }
 
 <div class="container-fluid pt-4 px-4">
@@ -31,8 +32,9 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
+                                count++;
                                 <tr>
-                                    <th scope="row">@item.productID</th>
+                                    <th scope="row">@count</th>
                                     <td>@item.title</td>
                                     <td>@item.city</td>
                                     <td>@item.district</td>
@@ -46,11 +48,11 @@
 
                                         @if (item.dealOfTheDay == true)
                                         {
-                                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@item.productID" class="btn btn-success">Pasif Yap</a>
+                                            <a asp-controller="Product" asp-action="ProductDealOfTheDayStatusChangeToFalse" asp-route-id="@item.productID" class="btn btn-success">Pasif Yap</a>
                                         }
                                         @if (item.dealOfTheDay == false)
                                         {
-                                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@item.productID" class="btn btn-outline-danger">Aktif Yap</a>
+                                            <a asp-controller="Product" asp-action="ProductDealOfTheDayStatusChangeToTrue" asp-route-id="@item.productID" class="btn btn-outline-danger">Aktif Yap</a>
                                         }
 
                                     </td>
