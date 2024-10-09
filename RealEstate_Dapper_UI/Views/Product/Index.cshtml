@@ -24,6 +24,7 @@
                                 <th scope="col">Sil</th>
                                 <th scope="col">Güncelle</th>
                                 <th scope="col">Sitede Gör</th>
+                                <th scope="col">Günün Fırsatı</th>
 
                             </tr>
                         </thead>
@@ -41,6 +42,18 @@
                                     <td><a asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@item.productID" class="btn btn-danger">Sil</a></td>
                                     <td><a asp-controller="Product" asp-action="UpdateProduct" asp-route-id="@item.productID" class="btn btn-info">Güncelle</a></td>
                                     <td><a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@item.productID" class="btn btn-dark">Sitede Gör</a></td>
+                                    <td>
+
+                                        @if (item.dealOfTheDay == true)
+                                        {
+                                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@item.productID" class="btn btn-success">Pasif Yap</a>
+                                        }
+                                        @if (item.dealOfTheDay == false)
+                                        {
+                                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@item.productID" class="btn btn-outline-danger">Aktif Yap</a>
+                                        }
+
+                                    </td>
 
                                 </tr>
                             }
