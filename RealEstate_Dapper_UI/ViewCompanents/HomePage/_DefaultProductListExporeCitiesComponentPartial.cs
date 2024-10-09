@@ -22,7 +22,7 @@ namespace RealEstate_Dapper_UI.ViewCompanents.HomePage
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 // jsonu yakalayıp normal formata dönüştürüyor. 
-                var values = JsonConvert.DeserializeObject<List<ResultPopularDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultPopularLocationDto>>(jsonData);
                 return View(values);
             }
             return View();
