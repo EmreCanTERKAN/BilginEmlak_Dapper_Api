@@ -1,5 +1,4 @@
 ﻿using RealEstate_Dapper_Api.Dtos.BottomGridDtos;
-using RealEstate_Dapper_Api.Dtos.ServiceDtos;
 
 namespace RealEstate_Dapper_Api.Repositories.BottomGridRepository
 {
@@ -9,6 +8,6 @@ namespace RealEstate_Dapper_Api.Repositories.BottomGridRepository
         void CreateBottomGrid(CreateBottomGridDto createBottomGridDto);
         void DeleteBottomGrid(int id);
         void UpdateBottomGrid(UpdateBottomGridDto updateBottomGridDto);
-        Task<GetBottomGridDto> GetBottomGrid (int id);
+        Task<GetBottomGridDto> GetBottomGrid(int id);
     }
 }
