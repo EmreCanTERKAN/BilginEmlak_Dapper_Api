@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using RealEstate_Dapper_Api.Dtos.CategoryDtos;
 using RealEstate_Dapper_Api.Dtos.ProductDtos;
 using RealEstate_Dapper_Api.Models.DapperContext;
 
@@ -29,6 +28,17 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryAsync<ResultProductWithCategoryDto>(query);
+                return values.ToList();
+
+            }
+        }
+
+        public async Task<List<ResultProductDto>> GetLast5ProductAsync()
+        {
+            string query = "Select Top(5) * From Product Where Type='Kiralık' Order By ProductID Desc";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<ResultProductDto>(query);
                 return values.ToList();
 
             }

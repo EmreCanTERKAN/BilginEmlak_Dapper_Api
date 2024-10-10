@@ -39,7 +39,15 @@ namespace RealEstate_Dapper_Api.Controllers
             _productRepository.ProductDealOfTheDayStatusChangeToFalse(id);
             return Ok("İlan Günün fırsatları arasından çıkarıldı.");
         }
-      
+
+        [HttpGet("Last5ProductList")]
+        public async Task<IActionResult> GetLast5ProductAsync()
+        {
+            var values = await _productRepository.GetLast5ProductAsync();
+            return Ok(values);
+        }
+
+
 
 
     }
