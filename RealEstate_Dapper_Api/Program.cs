@@ -34,12 +34,21 @@ builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddTransient<IContactRepository, ContactRepository>();
 builder.Services.AddTransient<IToDoListRepository, ToDoListRepository>();
 
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAllOrigins",
+//        builder => builder.AllowAnyMethod()
+//                          .AllowAnyHeader()
+//                          .SetIsOriginAllowed((host) => true)
+//                          .AllowCredentials());
+//});
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
         builder => builder.AllowAnyMethod()
                           .AllowAnyHeader()
-                          .SetIsOriginAllowed((host) => true)
+                          .WithOrigins("https://localhost:44393") // Ýzin verilen kaynaklarý belirt
                           .AllowCredentials());
 });
 
