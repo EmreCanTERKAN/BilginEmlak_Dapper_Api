@@ -30,4 +30,13 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// Area kullanmak için Scaffolding Readmeden kopyaladýðým. Uygulamaya area kullandýðýmý söylediðim bir bildiri kodu.
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
+
 app.Run();
