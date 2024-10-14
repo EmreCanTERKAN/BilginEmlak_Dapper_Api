@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RealEstate_Dapper_UI.Dtos.EmployeeDtos;
+using RealEstate_Dapper_UI.Services;
 using System.Text;
 
 namespace RealEstate_Dapper_UI.Controllers
@@ -10,15 +11,25 @@ namespace RealEstate_Dapper_UI.Controllers
     public class EmployeeController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ILoginService _loginService;
 
-        public EmployeeController(IHttpClientFactory httpClientFactory)
+        public EmployeeController(IHttpClientFactory httpClientFactory, ILoginService loginService)
         {
             _httpClientFactory = httpClientFactory;
+            _loginService = loginService;
         }
+
+
+
+
 
         // apiyi consume işlemi yapıyoruz...
         public async Task<IActionResult> Index()
         {
+            var user = User.Claims;
+            var userId = _loginService.GetUserId;
+
+
             var token = User.Claims.FirstOrDefault(x => x.Type == "bilgintoken")?.Value;
             if (token is not null)
             {

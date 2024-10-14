@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RealEstate_Dapper_UI.Dtos.ProductDtos;
+using RealEstate_Dapper_UI.Services;
 
 namespace RealEstate_Dapper_UI.Areas.EstateAgent.Controllers
 {
@@ -9,17 +10,19 @@ namespace RealEstate_Dapper_UI.Areas.EstateAgent.Controllers
     public class MyAdvertsController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ILoginService _loginService;
 
-        public MyAdvertsController(IHttpClientFactory httpClientFactory)
+        public MyAdvertsController(IHttpClientFactory httpClientFactory, ILoginService loginService)
         {
             _httpClientFactory = httpClientFactory;
+            _loginService = loginService;
         }
 
         // apiyi consume işlemi yapıyoruz...
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> Index()
         {
-            // şimdilik manuel
-            id = 1;
+            var id = _loginService.GetUserId;
+
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:44304/api/Products/ProductAdvertListByEmployeeId?id=" + id);
             if (responseMessage.IsSuccessStatusCode)

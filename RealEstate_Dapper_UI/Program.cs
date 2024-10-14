@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using RealEstate_Dapper_UI.Services;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //httpclient istemcilerini karþýlayacak servis
 builder.Services.AddHttpClient();
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme, opt =>
 {
     //kullanýcý giriþ yapmadan eriþeceði nokta
@@ -19,7 +22,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
     opt.Cookie.Name = "bilginCokie";
 });
 
-
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<ILoginService, LoginService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
